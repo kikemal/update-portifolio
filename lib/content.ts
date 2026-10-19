@@ -44,10 +44,10 @@ export const site = {
   shortName: "Kidist",
   role: "Creative developer",
   location: "Ethiopia",
-  email: null as string | null,
+  email: "kidistkemal53@gmail.com",
   github: "https://github.com/kikemal",
   linkedin: "https://www.linkedin.com/in/kidist-kemal-994561264",
-  cvPath: "/files/kidist-kemal-cv.pdf",
+  cvPath: "/files/kidist-kemal-cv.png",
   phrase: "My brain has a “what if we built this?” button.",
 };
 
@@ -146,12 +146,22 @@ export const projects: Project[] = [
     repoUrl: null,
     media: [
       {
-        type: "placeholder",
-        alt: "AYNE project media will appear here.",
+        type: "image",
+        src: "/images/work/ayne-phone.png",
+        alt: "AYNE on a phone, showing a listening microphone and a Thinking state.",
+      },
+      {
+        type: "image",
+        src: "/images/work/ayne-logo.jpg",
+        alt: "AYNE logo: a green eye mark with the name AYNE.",
+      },
+      {
+        type: "image",
+        src: "/images/work/ayne-listening.jpg",
+        alt: "Voice assistant listening screen with a large microphone control.",
       },
     ],
     pending: [
-      "Screenshots or a demo recording",
       "Demo or repository URL",
       "Verified technology stack",
       "Kidist’s specific role on the team",
@@ -218,6 +228,15 @@ export const projects: Project[] = [
   },
 ];
 
+export const featuredAward = {
+  title: "Cursor AI Hackathon Ethiopia",
+  place: "1st place",
+  date: "July 25–26, 2026",
+  placeDetail: "Adwa Museum, Addis Ababa",
+  image: "/images/certificates/cursor-hackathon-first-place.jpg",
+  note: "A team award for AYNE. The certificate is presented to Kidist Kemal Muhamed as a member of that team — not as a sole winner.",
+};
+
 export const certificates: Certificate[] = [
   {
     id: "cursor-dev",
@@ -230,9 +249,9 @@ export const certificates: Certificate[] = [
   {
     id: "cisco-cyber",
     title: "Introduction to Cybersecurity",
-    issuer: "Cisco",
+    issuer: "Cisco Networking Academy / Jimma University",
     date: "April 2026",
-    image: null,
+    image: "/images/certificates/cisco-cyber.jpg",
     verifyUrl: null,
   },
   {
@@ -248,15 +267,33 @@ export const certificates: Certificate[] = [
     title: "JavaScript",
     issuer: "freeCodeCamp",
     date: "February 2026",
-    image: null,
-    verifyUrl: null,
+    image: "/images/certificates/fcc-javascript.jpg",
+    verifyUrl:
+      "https://www.freecodecamp.org/certification/fcc-5265a0e0-3d5a-4baf-8745-d040e9fc8dc/javascript-v9",
   },
   {
     id: "fcc-rwd",
     title: "Responsive Web Design",
     issuer: "freeCodeCamp",
     date: "February 2026",
-    image: null,
+    image: "/images/certificates/fcc-responsive.jpg",
+    verifyUrl:
+      "https://www.freecodecamp.org/certification/fcc-5265a0e0-3d5a-4baf-8745-d040e9fc8dc/responsive-web-design-v9",
+  },
+  {
+    id: "forage-skyscanner",
+    title: "Front-End Software Engineering Job Simulation",
+    issuer: "Forage / Skyscanner",
+    date: "February 2026",
+    image: "/images/certificates/forage-skyscanner.png",
+    verifyUrl: null,
+  },
+  {
+    id: "geezx-ai",
+    title: "GeezX AI Bootcamp",
+    issuer: "GeezX",
+    date: "September 1–4",
+    image: "/images/certificates/geezx-ai.jpg",
     verifyUrl: null,
   },
 ];

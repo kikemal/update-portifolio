@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/ui/Reveal";
+
 export function About() {
   return (
     <section className="section" id="about" aria-labelledby="about-title">
@@ -13,10 +15,12 @@ export function About() {
           </p>
         </div>
         <div className="about-grid">
-          <p className="pull">
-            I like sitting with a problem until it becomes a thing someone can
-            actually use.
-          </p>
+          <Reveal>
+            <p className="pull">
+              I like sitting with a problem until it becomes a thing someone can
+              actually use.
+            </p>
+          </Reveal>
           <div>
             <div className="about-copy">
               <p>

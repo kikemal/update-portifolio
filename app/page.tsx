@@ -10,7 +10,7 @@ import { Contact } from "@/components/sections/Contact";
 
 export default function HomePage() {
   const cvAvailable = existsSync(
-    path.join(process.cwd(), "public/files/kidist-kemal-cv.pdf"),
+    path.join(process.cwd(), "public/files/kidist-kemal-cv.png"),
   );
 
   return (

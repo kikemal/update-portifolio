@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { usableMedia } from "@/lib/media";
+import { CaseMedia } from "@/components/work/CaseMedia";
 
 function Block({ title, children }: { title: string; children?: React.ReactNode }) {
   if (!children) {
@@ -51,22 +51,7 @@ export function ProjectCase({ project }: { project: Project }) {
             </Button>
           ) : null}
         </div>
-        <div className="case-hero-media">
-          {hero.type === "image" && hero.src ? (
-            <Image src={hero.src} alt={hero.alt} width={1600} height={1000} />
-          ) : hero.type === "video" && hero.src ? (
-            <video src={hero.src} controls playsInline preload="metadata">
-              {hero.caption}
-            </video>
-          ) : (
-            <div className="placeholder-art" style={{ minHeight: "22rem" }}>
-              <div>
-                <strong>{project.name}</strong>
-                Media still to be added.
-              </div>
-            </div>
-          )}
-        </div>
+        <CaseMedia item={hero} />
         <div className="case-grid">
           <Block title="The need">{project.problem ? <p>{project.problem}</p> : undefined}</Block>
           <Block title="Who it’s for">{project.audience ? <p>{project.audience}</p> : undefined}</Block>
@@ -101,20 +86,9 @@ export function ProjectCase({ project }: { project: Project }) {
         </div>
         {rest.length ? (
           <div style={{ display: "grid", gap: "1.2rem", marginTop: "2.5rem" }}>
-            {rest.map((item) =>
-              item.type === "image" && item.src ? (
-                <div className="case-hero-media" key={item.src}>
-                  <Image src={item.src} alt={item.alt} width={1600} height={1000} />
-                </div>
-              ) : item.type === "video" && item.src ? (
-                <div className="case-hero-media" key={item.src}>
-                  <video src={item.src} controls playsInline preload="metadata" />
-                  {item.caption ? (
-                    <p style={{ padding: "0.8rem 1rem", color: "var(--muted)" }}>{item.caption}</p>
-                  ) : null}
-                </div>
-              ) : null,
-            )}
+            {rest.map((item) => (
+              <CaseMedia key={item.src ?? item.alt} item={item} />
+            ))}
           </div>
         ) : null}
         {project.pending.length ? (

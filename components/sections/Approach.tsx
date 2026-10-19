@@ -1,4 +1,5 @@
 import { approach } from "@/lib/content";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function Approach() {
   return (
@@ -15,12 +16,14 @@ export function Approach() {
           </p>
         </div>
         <div className="approach-list">
-          {approach.map((item) => (
-            <article className="approach-item" key={item.num} tabIndex={0}>
-              <span className="num">{item.num}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
+          {approach.map((item, index) => (
+            <Reveal key={item.num} delay={index * 70}>
+              <article className="approach-item" tabIndex={0}>
+                <span className="num">{item.num}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

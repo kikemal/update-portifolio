@@ -36,7 +36,7 @@ export function Navigation() {
   return (
     <header className="nav">
       <div className="wrap nav-inner">
-        <Link href="/#" className="brand">
+        <Link href="/#" className="brand" data-cursor="Home">
           {site.shortName}
         </Link>
         <nav className="nav-links" aria-label="Primary">

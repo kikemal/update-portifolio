@@ -3,6 +3,8 @@ import { Figtree, Fraunces } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Navigation } from "@/components/layout/Navigation";
 import { CustomCursor } from "@/components/layout/CustomCursor";
+import { Intro } from "@/components/layout/Intro";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { site } from "@/lib/content";
 import "./globals.css";
@@ -48,6 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Skip to content
           </a>
           <CustomCursor />
+          <Intro />
+          <ScrollProgress />
+          <div className="grain" aria-hidden="true" />
           <div className="page">
             <Navigation />
             {children}

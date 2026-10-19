@@ -37,21 +37,27 @@ export function Button({
   if (href && !disabled) {
     if (external) {
       return (
-        <a href={href} className={classes} target="_blank" rel="noreferrer">
+        <a href={href} className={classes} target="_blank" rel="noreferrer" data-cursor="Open">
           {inner}
         </a>
       );
     }
 
     return (
-      <Link href={href} className={classes} download={download}>
+      <Link href={href} className={classes} download={download} data-cursor="Open">
         {inner}
       </Link>
     );
   }
 
   return (
-    <button type={type} className={classes} disabled={disabled} onClick={onClick}>
+    <button
+      type={type}
+      className={classes}
+      disabled={disabled}
+      onClick={onClick}
+      data-cursor="Open"
+    >
       {inner}
     </button>
   );

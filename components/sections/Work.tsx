@@ -18,7 +18,12 @@ function Preview({
   return (
     <div className={cx("preview-frame", active && "is-active")} aria-hidden={!active}>
       {media.type === "image" && media.src ? (
-        <Image src={media.src} alt={media.alt} fill sizes="(max-width: 900px) 100vw, 48vw" />
+        <Image
+          src={media.src}
+          alt={media.alt}
+          fill
+          sizes="(max-width: 900px) 100vw, 42vw"
+        />
       ) : media.type === "video" && media.src ? (
         <video src={media.src} muted playsInline preload="metadata" />
       ) : (
@@ -46,12 +51,12 @@ export function Work() {
             <h2 id="work-title">Work</h2>
           </div>
           <p className="section-note">
-            Hover a title to change the preview. Every project opens into a
-            longer note.
+            Hover or focus a title to change the preview. Every project opens
+            into a longer note — nothing essential is hover-only.
           </p>
         </div>
         <div className="work-layout">
-          <div className="project-list" role="list">
+          <div className="project-list">
             {projects.map((project, index) => (
               <Link
                 key={project.slug}
@@ -59,7 +64,7 @@ export function Work() {
                 className={cx("project-row", index === active && "is-active")}
                 onMouseEnter={() => setActive(index)}
                 onFocus={() => setActive(index)}
-                role="listitem"
+                data-cursor="View project"
               >
                 <span className="project-idx">0{index + 1}</span>
                 <span className="project-name">
@@ -69,6 +74,7 @@ export function Work() {
                   {project.kicker}
                   {project.year ? ` · ${project.year}` : ""}
                 </span>
+                <span className="project-copy">{project.summary}</span>
               </Link>
             ))}
           </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cvHighlights, site } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 
@@ -37,7 +38,7 @@ export function Resume({ cvAvailable }: { cvAvailable: boolean }) {
             </div>
             {!cvAvailable && (
               <p className="need" style={{ marginTop: "1rem" }}>
-                PDF not in place yet. Add it at public/files/kidist-kemal-cv.pdf.
+                CV file not in place yet. Add it at public/files/kidist-kemal-cv.png.
               </p>
             )}
             <dl>
@@ -51,18 +52,19 @@ export function Resume({ cvAvailable }: { cvAvailable: boolean }) {
           </div>
           <div className="cv-preview">
             {cvAvailable ? (
-              <object data={site.cvPath} type="application/pdf" aria-label="CV preview">
-                <p className="cv-empty">
-                  Your browser can’t preview PDFs. Use View CV instead.
-                </p>
-              </object>
+              <Image
+                src={site.cvPath}
+                alt="Kidist Kemal CV"
+                width={900}
+                height={1270}
+              />
             ) : (
               <div className="cv-empty">
                 <div>
                   <strong style={{ display: "block", color: "var(--ink)", fontFamily: "var(--font-serif)", fontSize: "2rem" }}>
                     CV preview
                   </strong>
-                  Place kidist-kemal-cv.pdf in public/files to enable view and
+                  Place kidist-kemal-cv.png in public/files to enable view and
                   download.
                 </div>
               </div>

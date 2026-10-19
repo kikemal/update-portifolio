@@ -4,10 +4,12 @@ import { useEffect, useRef } from "react";
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const cursor = cursorRef.current;
-    if (!cursor) return;
+    const label = labelRef.current;
+    if (!cursor || !label) return;
 
     const finePointer = window.matchMedia("(pointer: fine)").matches;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -25,15 +27,23 @@ export function CustomCursor() {
       y = event.clientY;
       cursor.classList.add("is-on");
       const target = event.target as HTMLElement | null;
-      const hot = Boolean(
-        target?.closest("a, button, input, textarea, select, label, .project-row, .cert-row, .what-if-btn"),
-      );
-      cursor.classList.toggle("is-hot", hot);
+      const hot = target?.closest(
+        "a, button, input, textarea, select, label, .project-row, .cert-row, .what-if-btn, .media-zoom",
+      ) as HTMLElement | null;
+      cursor.classList.toggle("is-hot", Boolean(hot));
+      const text = hot?.dataset.cursor;
+      if (text) {
+        label.textContent = text;
+        cursor.classList.add("is-labeled");
+      } else {
+        label.textContent = "";
+        cursor.classList.remove("is-labeled");
+      }
     };
 
     const loop = () => {
-      px += (x - px) * 0.28;
-      py += (y - py) * 0.28;
+      px += (x - px) * 0.32;
+      py += (y - py) * 0.32;
       cursor.style.transform = `translate(${px}px, ${py}px) translate(-50%, -50%)`;
       frame = window.requestAnimationFrame(loop);
     };
@@ -52,5 +62,9 @@ export function CustomCursor() {
     };
   }, []);
 
-  return <div className="cursor" ref={cursorRef} aria-hidden="true" />;
+  return (
+    <div className="cursor" ref={cursorRef} aria-hidden="true">
+      <span className="cursor-label" ref={labelRef} />
+    </div>
+  );
 }

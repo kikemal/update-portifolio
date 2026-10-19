@@ -74,7 +74,7 @@ export function Contact() {
             ) : (
               <p className="need">Email address still needed — LinkedIn is the live contact path for now.</p>
             )}
-            <a className="ink" href={site.linkedin} target="_blank" rel="noreferrer">
+            <a className="ink" href={site.linkedin} target="_blank" rel="noreferrer" data-cursor="Open">
               Message me on LinkedIn
             </a>
             <a className="ink" href={site.github} target="_blank" rel="noreferrer">
