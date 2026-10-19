@@ -1,0 +1,5 @@
+Place the HULUM screen recording here as:
+
+hulum-demo.mp4
+
+The case study looks for this filename.

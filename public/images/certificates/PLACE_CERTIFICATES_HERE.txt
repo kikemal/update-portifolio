@@ -1,0 +1,9 @@
+Add certificate images here, then set the matching `image` path in lib/content.ts:
+
+- cursor-dev.jpg  (Development, Ethiopian Cursor Community)
+- cisco-cyber.jpg (Introduction to Cybersecurity, Cisco)
+- fcc-english.jpg (A2 English for Developers, freeCodeCamp)
+- fcc-js.jpg      (JavaScript, freeCodeCamp)
+- fcc-rwd.jpg     (Responsive Web Design, freeCodeCamp)
+
+Optional: AYNE / hackathon photos can go in public/images/work/

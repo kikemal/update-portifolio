@@ -1,0 +1,5 @@
+Place your CV PDF here as:
+
+kidist-kemal-cv.pdf
+
+View CV and Download CV will activate automatically after the file is present and the site is rebuilt or refreshed.
