@@ -17,21 +17,56 @@ export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="wrap hero-grid">
-        <div>
+        <div className="hero-identity">
           <p className="eyebrow reveal">{site.location}</p>
           <MaskText text="Kidist Kemal" as="h1" className="reveal delay-1" />
           <p className="hero-headline reveal delay-2">
-            <span className="hero-role">Creative Developer</span>
-            <span className="hero-sep" aria-hidden="true">
-              |
+            <span className="hero-role">Full-Stack Developer</span>
+            <span className="hero-stack">
+              React • Next.js • Flutter
+              <span className="hero-sep" aria-hidden="true">
+                {" "}
+                ·{" "}
+              </span>
+              AI Enthusiast
             </span>
-            <span>Turning Ideas into Useful Digital Experiences</span>
-            <span className="hero-sep" aria-hidden="true">
-              |
+            <span className="hero-promise">
+              Turning Ideas into Scalable Digital Products
             </span>
-            <span>Building Thoughtful, Human-Centered Products</span>
           </p>
-          <div className="what-if reveal delay-3">
+        </div>
+        <Portrait className="reveal delay-2" />
+        <div className="hero-about">
+          <p className="hero-intro reveal delay-3">
+            I’m Kidist Kemal, a creative developer from Ethiopia who enjoys
+            turning ideas into useful digital experiences. I build thoughtful,
+            human-centered products around technology, usability, and purposeful
+            design — solving real problems and making technology more accessible.
+          </p>
+          <div className="hero-actions reveal delay-4">
+            <Magnetic>
+              <Button href="/#work">Explore my work</Button>
+            </Magnetic>
+            <Magnetic>
+              <Button href="/#contact" ghost>
+                Let’s talk
+              </Button>
+            </Magnetic>
+          </div>
+        </div>
+        <div className="hero-texture">
+          <div className="about-chips reveal delay-4">
+            <span className="chip">Problem-solving</span>
+            <span className="chip">Learning in public</span>
+            <span className="chip">Fashion</span>
+            <span className="chip">Photography</span>
+            <span className="chip">Good conversation</span>
+          </div>
+          <p className="faith reveal delay-4">
+            Faith sits in the work without needing a spotlight. I pray about my
+            goals, and I give <em>God</em> credit for the things that land.
+          </p>
+          <div className="what-if reveal delay-4">
             <p className="what-if-label">
               My brain has a{" "}
               <button
@@ -51,18 +86,7 @@ export function Hero() {
               <span key={idea}>{whatIfs[idea]}</span>
             </span>
           </div>
-          <div className="hero-actions reveal delay-4">
-            <Magnetic>
-              <Button href="/#work">Explore my work</Button>
-            </Magnetic>
-            <Magnetic>
-              <Button href="/#contact" ghost>
-                Let’s talk
-              </Button>
-            </Magnetic>
-          </div>
         </div>
-        <Portrait />
       </div>
     </section>
   );

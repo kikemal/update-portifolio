@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { cx } from "@/lib/utils";
 
-export function Portrait() {
+export function Portrait({ className }: { className?: string }) {
   const [wobble, setWobble] = useState(false);
 
   function shake() {
@@ -17,7 +18,7 @@ export function Portrait() {
   }
 
   return (
-    <figure className="portrait-frame">
+    <figure className={cx("portrait-frame", className)}>
       <button
         type="button"
         className="portrait-hit"
@@ -33,7 +34,7 @@ export function Portrait() {
             fill
             unoptimized
             priority
-            sizes="(max-width: 900px) min(88vw, 380px), 380px"
+            sizes="(max-width: 640px) 168px, (max-width: 900px) 240px, 270px"
           />
         </span>
       </button>

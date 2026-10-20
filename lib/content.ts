@@ -68,7 +68,6 @@ export const socials: SocialLink[] = [
 export const nav = [
   { href: "/#work", label: "Work", id: "work" },
   { href: "/#awards", label: "Awards", id: "awards" },
-  { href: "/#about", label: "About", id: "about" },
   { href: "/#cv", label: "CV", id: "cv" },
   { href: "/#contact", label: "Contact", id: "contact" },
 ];
