@@ -1,142 +1,231 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { certificates, featuredAward } from "@/lib/content";
-import { cx } from "@/lib/utils";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { certificates, featuredAward, getProject } from "@/lib/content";
+import { Button } from "@/components/ui/Button";
+import { Lightbox } from "@/components/ui/Lightbox";
 import { Reveal } from "@/components/ui/Reveal";
+import { cx } from "@/lib/utils";
 
 export function Awards() {
+  const ayne = getProject("ayne");
+  const scroller = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
-  const [open, setOpen] = useState(false);
-  const current = certificates[active];
+  const [preview, setPreview] = useState<(typeof certificates)[number] | "award" | null>(null);
 
   useEffect(() => {
-    if (!open) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+    const node = scroller.current;
+    if (!node) return;
+
+    const onScroll = () => {
+      const cards = [...node.querySelectorAll<HTMLElement>(".carousel-card")];
+      if (!cards.length) return;
+      const mid = node.scrollLeft + node.clientWidth / 2;
+      let nearest = 0;
+      let distance = Infinity;
+      cards.forEach((card, index) => {
+        const center = card.offsetLeft + card.offsetWidth / 2;
+        const delta = Math.abs(center - mid);
+        if (delta < distance) {
+          distance = delta;
+          nearest = index;
+        }
+      });
+      setActive(nearest);
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+
+    node.addEventListener("scroll", onScroll, { passive: true });
+    return () => node.removeEventListener("scroll", onScroll);
+  }, []);
+
+  function go(direction: number) {
+    const node = scroller.current;
+    const card = node?.querySelector<HTMLElement>(".carousel-card");
+    if (!node || !card) return;
+    const amount = card.getBoundingClientRect().width + 16;
+    node.scrollBy({ left: direction * amount, behavior: "smooth" });
+  }
+
+  function jump(index: number) {
+    const card = scroller.current?.querySelectorAll<HTMLElement>(".carousel-card")[index];
+    card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }
+
+  const previewImage =
+    preview === "award"
+      ? {
+          src: featuredAward.image,
+          alt: "First-place certificate from the Cursor AI Hackathon Ethiopia, presented to Kidist Kemal Muhamed as a team member.",
+        }
+      : preview?.image
+        ? {
+            src: preview.image,
+            alt: `${preview.title} certificate from ${preview.issuer}`,
+          }
+        : null;
 
   return (
     <section className="section" id="awards" aria-labelledby="awards-title">
       <div className="wrap">
         <div className="section-head">
           <div>
-            <p className="kicker">Recognition</p>
-            <h2 id="awards-title">Awards</h2>
+            <p className="kicker">Team achievement</p>
+            <h2 id="awards-title">First place</h2>
           </div>
           <p className="section-note">
-            The headline award belongs to a team. The certificates are study I
-            can stand behind.
+            AYNE and the hackathon award belong together — a shared night of
+            building, not a solo trophy.
           </p>
         </div>
+
         <Reveal>
-          <div className="award-feature">
-            <p className="award-mark">
-              1st
-              <br />
-              place.
-            </p>
-            <div className="award-copy">
+          <div className="ayne-award">
+            <article className="ayne-card">
+              {ayne?.media[0]?.src ? (
+                <div className="ayne-card-media">
+                  <Image
+                    src={ayne.media[0].src}
+                    alt={ayne.media[0].alt}
+                    fill
+                    quality={90}
+                    sizes="(max-width: 900px) 100vw, 48vw"
+                  />
+                </div>
+              ) : null}
+              <p className="kicker">{ayne?.kicker} · {ayne?.year}</p>
+              <h3>{ayne?.name}</h3>
+              <p>
+                AYNE is a voice-first AI assistant concept designed to support
+                people with visual impairments — helping them navigate and
+                understand a physical environment through spoken commands.
+              </p>
+              <p>
+                Built as a team MVP at the Cursor AI Hackathon Ethiopia, with
+                teammates Mulualem Mekonin, Melkamu Teshome, Obsan Habtamu, and
+                Samuel Feyisa.
+              </p>
+              <Button href="/work/ayne">Read the case</Button>
+            </article>
+
+            <article className="award-card">
+              <p className="award-mark">1st place</p>
+              <h3>Cursor AI Hackathon Ethiopia</h3>
               <p className="kicker">
                 {featuredAward.date} · {featuredAward.placeDetail}
               </p>
-              <h3>{featuredAward.title}</h3>
               <p>
-                A team award for AYNE, a voice-first assistant built for visually
-                impaired people. I was one member of that team — not the sole
-                winner. The night was short, the problem was real, and the work
-                was shared.
+                A team award for AYNE. I was one member of that team — not the
+                sole winner.
               </p>
               <button
                 type="button"
                 className="award-shot media-zoom"
-                onClick={() => setOpen(true)}
+                onClick={() => setPreview("award")}
                 data-cursor="View"
                 aria-label="Open first-place certificate"
               >
                 <Image
                   src={featuredAward.image}
                   alt="First-place certificate from the Cursor AI Hackathon Ethiopia, presented to Kidist Kemal Muhamed."
-                  width={1600}
-                  height={1100}
+                  width={1200}
+                  height={840}
+                  quality={95}
                 />
               </button>
-            </div>
+            </article>
           </div>
         </Reveal>
-        <div className="certs">
+
+        <div className="carousel-head">
           <div>
-            {certificates.map((item, index) => (
-              <button
-                type="button"
-                key={item.id}
-                className={cx("cert-row", index === active && "is-active")}
-                onMouseEnter={() => setActive(index)}
-                onFocus={() => setActive(index)}
-                onClick={() => setActive(index)}
-                aria-pressed={index === active}
-                data-cursor="Preview"
-              >
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.issuer}</p>
-                </div>
-                <time dateTime={item.date}>{item.date}</time>
-              </button>
-            ))}
+            <p className="kicker">Study</p>
+            <h3 className="carousel-title">Certificates</h3>
           </div>
-          <div className="cert-preview" aria-live="polite">
-            {current.image ? (
-              <div>
-                <Image
-                  src={current.image}
-                  alt={`${current.title} certificate from ${current.issuer}`}
-                  width={720}
-                  height={520}
-                />
-                {current.verifyUrl ? (
-                  <p style={{ marginTop: "0.8rem" }}>
-                    <a className="ink" href={current.verifyUrl} target="_blank" rel="noreferrer">
-                      Verify certificate
-                    </a>
-                  </p>
-                ) : null}
-              </div>
-            ) : (
-              <div>
-                <strong
-                  style={{
-                    display: "block",
-                    color: "var(--ink)",
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "1.5rem",
-                    marginBottom: "0.4rem",
-                  }}
+          <div className="carousel-nav">
+            <button type="button" className="icon-btn" onClick={() => go(-1)} aria-label="Previous certificate">
+              ←
+            </button>
+            <button type="button" className="icon-btn" onClick={() => go(1)} aria-label="Next certificate">
+              →
+            </button>
+          </div>
+        </div>
+
+        <div
+          className="carousel-viewport"
+          ref={scroller}
+          tabIndex={0}
+          role="region"
+          aria-roledescription="carousel"
+          onKeyDown={(event) => {
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              go(1);
+            }
+            if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              go(-1);
+            }
+          }}
+          aria-label="Certificate carousel"
+        >
+          {certificates.map((item, index) => (
+            <article key={item.id} className={cx("carousel-card", index === active && "is-active")}>
+              {item.image ? (
+                <button
+                  type="button"
+                  className="carousel-media"
+                  onClick={() => setPreview(item)}
+                  data-cursor="Preview"
+                  aria-label={`Open ${item.title} certificate`}
                 >
-                  {current.title}
-                </strong>
-                Certificate image still needed for {current.issuer}, {current.date}.
-              </div>
-            )}
-          </div>
+                  <Image
+                    src={item.image}
+                    alt={`${item.title} certificate from ${item.issuer}`}
+                    width={900}
+                    height={640}
+                    quality={95}
+                  />
+                </button>
+              ) : (
+                <div className="carousel-placeholder">
+                  <strong>{item.title}</strong>
+                  Image still to be added.
+                </div>
+              )}
+              <h3>{item.title}</h3>
+              <p>
+                {item.issuer} · {item.date}
+              </p>
+              {item.verifyUrl ? (
+                <Link className="ink" href={item.verifyUrl} target="_blank" rel="noreferrer">
+                  Verify
+                </Link>
+              ) : null}
+            </article>
+          ))}
+        </div>
+
+        <div className="carousel-dots" role="group" aria-label="Certificate position">
+          {certificates.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              className={cx("carousel-dot", index === active && "is-active")}
+              aria-label={`Show ${item.title}`}
+              aria-current={index === active}
+              onClick={() => jump(index)}
+            />
+          ))}
         </div>
       </div>
-      {open ? (
-        <div className="lightbox" role="dialog" aria-modal="true" aria-label="Certificate">
-          <button type="button" className="media-zoom" onClick={() => setOpen(false)}>
-            <Image
-              src={featuredAward.image}
-              alt="First-place certificate from the Cursor AI Hackathon Ethiopia, presented to Kidist Kemal Muhamed."
-              width={1600}
-              height={1100}
-            />
-            <span className="visually-hidden">Close certificate preview</span>
-          </button>
-        </div>
+
+      {previewImage ? (
+        <Lightbox title="Certificate preview" onClose={() => setPreview(null)}>
+          <Image src={previewImage.src} alt={previewImage.alt} width={1600} height={1100} quality={95} />
+        </Lightbox>
       ) : null}
     </section>
   );

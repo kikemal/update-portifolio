@@ -6,7 +6,7 @@ import { nav, site } from "@/lib/content";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cx } from "@/lib/utils";
 
-const sectionIds = ["work", "about", "approach", "awards", "cv", "contact"];
+const sectionIds = ["work", "awards", "about", "cv", "contact"];
 
 export function Navigation() {
   const [open, setOpen] = useState(false);

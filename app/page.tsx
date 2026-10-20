@@ -3,7 +3,6 @@ import path from "path";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Work } from "@/components/sections/Work";
-import { Approach } from "@/components/sections/Approach";
 import { Awards } from "@/components/sections/Awards";
 import { Resume } from "@/components/sections/Resume";
 import { Contact } from "@/components/sections/Contact";
@@ -17,9 +16,8 @@ export default function HomePage() {
     <main id="main">
       <Hero />
       <Work />
-      <About />
-      <Approach />
       <Awards />
+      <About />
       <Resume cvAvailable={cvAvailable} />
       <Contact />
     </main>

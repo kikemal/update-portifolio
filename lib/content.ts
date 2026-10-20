@@ -66,6 +66,7 @@ export const socials: SocialLink[] = [
 
 export const nav = [
   { href: "/#work", label: "Work", id: "work" },
+  { href: "/#awards", label: "Awards", id: "awards" },
   { href: "/#about", label: "About", id: "about" },
   { href: "/#cv", label: "CV", id: "cv" },
   { href: "/#contact", label: "Contact", id: "contact" },
@@ -295,34 +296,6 @@ export const certificates: Certificate[] = [
     date: "September 1–4",
     image: "/images/certificates/geezx-ai.jpg",
     verifyUrl: null,
-  },
-];
-
-export const approach = [
-  {
-    num: "01",
-    title: "Wonder",
-    text: "Most of my work starts as a quiet question. I notice a friction, turn it over, and press the button my brain already has: what if we built this?",
-  },
-  {
-    num: "02",
-    title: "Listen",
-    text: "Before I reach for a stack, I try to understand the actual problem — who it belongs to, what they are waiting on, and what would make the day easier.",
-  },
-  {
-    num: "03",
-    title: "Learn",
-    text: "I like growing with the tools as they change. If a path stops working, I change path. That is how Firebase became Supabase on the school app: adapt, then continue.",
-  },
-  {
-    num: "04",
-    title: "Try",
-    text: "I would rather make a small working slice than protect a perfect plan. Ideas get clearer once they can be clicked, spoken to, or held up to a real person.",
-  },
-  {
-    num: "05",
-    title: "Shape",
-    text: "Then I refine. Fashion and photography sit in the same part of my mind as interface work: composition, pacing, and the feeling of a thing once someone enters it.",
   },
 ];
 

@@ -35,16 +35,23 @@ export function Button({
   );
 
   if (href && !disabled) {
-    if (external) {
+    if (external || download) {
       return (
-        <a href={href} className={classes} target="_blank" rel="noreferrer" data-cursor="Open">
+        <a
+          href={href}
+          className={classes}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noreferrer" : undefined}
+          download={download || undefined}
+          data-cursor="Open"
+        >
           {inner}
         </a>
       );
     }
 
     return (
-      <Link href={href} className={classes} download={download} data-cursor="Open">
+      <Link href={href} className={classes} data-cursor="Open">
         {inner}
       </Link>
     );
