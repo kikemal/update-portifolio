@@ -1,27 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { site, whatIfs } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { Portrait } from "@/components/ui/Portrait";
 
 export function Hero() {
   const [idea, setIdea] = useState(0);
-  const [wobble, setWobble] = useState(false);
 
   function cycle() {
     setIdea((value) => (value + 1) % whatIfs.length);
-  }
-
-  function shake() {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-    setWobble(false);
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => setWobble(true));
-    });
   }
 
   return (
@@ -74,30 +63,7 @@ export function Hero() {
             </Magnetic>
           </div>
         </div>
-        <figure className="portrait-frame reveal delay-2">
-          <button
-            type="button"
-            className="portrait-hit"
-            onClick={shake}
-            onAnimationEnd={() => setWobble(false)}
-            aria-label="Play a short portrait animation"
-            data-cursor="Shake"
-          >
-            <span className={wobble ? "portrait-media is-wobble" : "portrait-media"}>
-              <Image
-                src="/images/portrait.jpg"
-                alt="Portrait of Kidist Kemal, seated, looking toward the camera."
-                fill
-                priority
-                sizes="(max-width: 900px) 88vw, 320px"
-              />
-            </span>
-          </button>
-          <figcaption className="portrait-caption">
-            <span>Portrait</span>
-            <span>Quiet first. Then the making starts.</span>
-          </figcaption>
-        </figure>
+        <Portrait />
       </div>
     </section>
   );

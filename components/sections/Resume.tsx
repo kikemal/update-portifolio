@@ -11,14 +11,16 @@ export function Resume({ cvAvailable }: { cvAvailable: boolean }) {
 
   return (
     <section className="section" id="cv" aria-labelledby="cv-title">
-      <div className="wrap resume-box">
-        <div>
-          <p className="kicker">On paper</p>
-          <h2 id="cv-title">CV</h2>
-          <p className="hero-lead" style={{ marginTop: "0.85rem" }}>
-            A concise picture of studies, tools, projects, and the team award.
-            Work history is only what has been confirmed.
-          </p>
+      <div className="wrap">
+        <div className="resume-intro">
+          <div>
+            <p className="kicker">On paper</p>
+            <h2 id="cv-title">CV</h2>
+            <p className="hero-lead">
+              A concise picture of studies, tools, projects, and the team award.
+              Work history is only what has been confirmed.
+            </p>
+          </div>
           <div className="cv-actions">
             <Button type="button" disabled={!cvAvailable} onClick={() => setOpen(true)}>
               Preview CV
@@ -32,13 +34,13 @@ export function Resume({ cvAvailable }: { cvAvailable: boolean }) {
               Download CV
             </Button>
           </div>
-          {!cvAvailable && (
-            <p className="need" style={{ marginTop: "1rem" }}>
-              CV file not in place yet. Add it at public/files/kidist-kemal-cv.png.
-            </p>
-          )}
         </div>
-        <dl>
+        {!cvAvailable && (
+          <p className="need">
+            CV file not in place yet. Add it at public/files/kidist-kemal-cv.png.
+          </p>
+        )}
+        <dl className="cv-highlights">
           {cvHighlights.map((item) => (
             <div className="highlight" key={item.label}>
               <dt>{item.label}</dt>
