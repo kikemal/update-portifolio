@@ -4,6 +4,7 @@ import { useState } from "react";
 import { site, whatIfs } from "@/lib/content";
 import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { MaskText } from "@/components/ui/MaskText";
 import { Portrait } from "@/components/ui/Portrait";
 
 export function Hero() {
@@ -18,11 +19,9 @@ export function Hero() {
       <div className="wrap hero-grid">
         <div>
           <p className="eyebrow reveal">{site.location}</p>
-          <h1 id="hero-title" className="reveal delay-1">
-            Kidist Kemal
-          </h1>
+          <MaskText text="Kidist Kemal" as="h1" className="reveal delay-1" />
           <p className="hero-headline reveal delay-2">
-            <span>Creative Developer</span>
+            <span className="hero-role">Creative Developer</span>
             <span className="hero-sep" aria-hidden="true">
               |
             </span>

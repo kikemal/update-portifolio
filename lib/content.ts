@@ -36,6 +36,7 @@ export type Certificate = {
   issuer: string;
   date: string;
   image?: string | null;
+  file?: string | null;
   verifyUrl?: string | null;
 };
 
@@ -76,7 +77,7 @@ export const whatIfs = [
   "a way to know if an opportunity is worth the time?",
   "a voice that helps someone understand the room?",
   "a queue that people don’t have to stand inside?",
-  "a school day parents can actually follow?",
+  "a campus that helps lost things find their way home?",
 ];
 
 export const projects: Project[] = [
@@ -173,58 +174,67 @@ export const projects: Project[] = [
     name: "QueueLess",
     kicker: "Waiting, redesigned",
     summary:
-      "A queue product with a working deployed demo and a business dashboard — built around a problem people in Ethiopia know too well.",
-    problem: undefined,
-    audience: undefined,
+      "A queue product that lets people join a line from their phone while businesses manage waiting in real time — skip the line, keep the time.",
+    problem:
+      "Physical queues cost people time they cannot get back, and businesses have little visibility into who is waiting.",
+    audience: "Customers joining a queue from a phone, and businesses running a live line.",
     role: undefined,
     process: undefined,
     results:
-      "A working demo and business dashboard exist. Public URLs and screenshots still need to be added here.",
+      "The product includes a public homepage, a business dashboard, and a QR code that opens a public queue. A live public URL still needs to be added here.",
     demoUrl: null,
     repoUrl: null,
     media: [
       {
-        type: "placeholder",
-        alt: "QueueLess project media will appear here.",
+        type: "image",
+        src: "/images/work/queueless-home.png",
+        alt: "QueueLess homepage with the headline Skip the line. Keep your time.",
+      },
+      {
+        type: "image",
+        src: "/images/work/queueless-qr.png",
+        alt: "QueueLess business dashboard showing a public-queue QR code.",
       },
     ],
     pending: [
       "Live demo URL",
-      "Business dashboard URL, if separate",
-      "Screenshots or a screen recording",
-      "Problem, audience, role, process, and stack",
+      "Repository URL, if public",
+      "Kidist’s specific role and contribution",
+      "Verified technology stack",
     ],
   },
   {
-    slug: "school-monitoring",
-    name: "School Monitoring System",
-    kicker: "Parents, closer to the school day",
-    year: "2026",
+    slug: "tefabign",
+    name: "Tefabign",
+    kicker: "Campus lost & found",
     summary:
-      "A student progress app so parents can follow performance without waiting for the next report card.",
+      "A campus lost-and-found product for reporting missing belongings, posting found items, and helping people get things back — safely.",
     problem:
-      "Parents often wait until report cards arrive to understand how a child is doing. Attendance, results, and day-to-day progress stay out of reach until then.",
-    audience: "Parents, with teachers able to upload scores.",
-    role: "Independent project, built in public.",
-    process:
-      "Started in Flutter with Firebase for authentication and data. Billing limits on Firestore slowed the work, so the backend was moved to Supabase — learning SQL, tables, and access rules along the way.",
-    decisions:
-      "The interesting part was not staying loyal to the first tool. When Firebase became a wall, the project changed shape instead of stopping.",
-    stack: ["Flutter", "Firebase", "Supabase"],
+      "When something goes missing on campus, people need a single place to report it, search what has been found, and keep private details protected.",
+    audience: "People on campus who have lost or found an item.",
+    role: undefined,
+    process: undefined,
     results:
-      "Public build-in-public notes cover setup, authentication, and the backend pivot. Current product status, a live demo, and screenshots still need to be added.",
+      "The product includes a public lost-and-found homepage and a report flow for lost or found items. A live public URL still needs to be added here.",
     demoUrl: null,
-    repoUrl: "https://github.com/kikemal/student_monitoring_app",
+    repoUrl: null,
     media: [
       {
-        type: "placeholder",
-        alt: "School Monitoring System media will appear here.",
+        type: "image",
+        src: "/images/work/tefabign-home.png",
+        alt: "Tefabign homepage with the headline Lost something? Let’s find it.",
+      },
+      {
+        type: "image",
+        src: "/images/work/tefabign-report.png",
+        alt: "Tefabign report form for submitting a lost or found item.",
       },
     ],
     pending: [
-      "Screenshots or a screen recording",
-      "Live demo URL, if available",
-      "Current product status",
+      "Live demo URL",
+      "Repository URL, if public",
+      "Kidist’s specific role and contribution",
+      "Verified technology stack",
     ],
   },
 ];
@@ -256,12 +266,13 @@ export const certificates: Certificate[] = [
     verifyUrl: null,
   },
   {
-    id: "fcc-english",
-    title: "A2 English for Developers",
-    issuer: "freeCodeCamp",
-    date: "February 2026",
-    image: null,
-    verifyUrl: null,
+    id: "stark-hackathon",
+    title: "Certificate of Participation",
+    issuer: "STARK Official Hackathon",
+    date: "11 October 2026",
+    image: "/images/certificates/stark-hackathon.jpg",
+    file: "/files/stark-hackathon.pdf",
+    verifyUrl: "https://hackathon.stark.et",
   },
   {
     id: "fcc-js",
@@ -320,7 +331,7 @@ export const cvHighlights = [
   },
   {
     label: "Selected work",
-    value: "HULUM, AYNE, QueueLess, and a School Monitoring System.",
+    value: "HULUM, AYNE, QueueLess, and Tefabign.",
   },
   {
     label: "Recognition",

@@ -11,8 +11,8 @@
   --text-lead: clamp(1.05rem, 0.98rem + 0.3vw, 1.1875rem);
   --text-nav: 0.875rem;
   --text-meta: 0.75rem;
-  --text-section: clamp(1.85rem, 1.3rem + 1.6vw, 3.1rem);
-  --text-hero: clamp(2.4rem, 1.5rem + 3vw, 4.25rem);
+  --text-section: clamp(1.7rem, 1.2rem + 1.4vw, 2.75rem);
+  --text-hero: clamp(2.2rem, 1.4rem + 2.4vw, 3.6rem);
   --text-pull: clamp(1.7rem, 1.25rem + 1.4vw, 2.65rem);
   --measure: 38rem;
 }
@@ -475,6 +475,13 @@ html,
   line-height: 1.5;
 }
 
+.hero-role {
+  color: var(--accent);
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 1rem + 0.45vw, 1.4rem);
+  font-style: italic;
+}
+
 .hero-sep {
   color: var(--faint);
 }
@@ -724,7 +731,7 @@ html,
   top: calc(var(--nav-h) + 1.1rem);
   overflow: hidden;
   min-height: 14rem;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 16 / 10;
   max-height: 22rem;
   background: var(--bg-soft);
   border-radius: 1.1rem;
@@ -749,7 +756,8 @@ html,
 .preview-frame video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: top center;
 }
 
 .placeholder-art {
@@ -934,10 +942,24 @@ html,
   text-align: center;
 }
 
-.carousel-placeholder strong {
+.carousel-placeholder strong,
+.carousel-doc strong {
   display: block;
   margin-bottom: 0.3rem;
   color: var(--ink);
+}
+
+.carousel-doc {
+  padding: 1rem;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.carousel-doc strong {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .carousel-dots {
@@ -1231,7 +1253,9 @@ button.case-hero-media {
 .case-hero-media video {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: top center;
+  background: var(--bg-soft);
 }
 
 .case-grid {
@@ -1466,6 +1490,14 @@ button.case-hero-media {
 .lightbox-actions {
   margin-top: 0.8rem;
   color: var(--muted);
+}
+
+.lightbox-pdf {
+  width: 100%;
+  min-height: min(70vh, 42rem);
+  border: 0;
+  background: var(--bg-soft);
+  border-radius: 0.6rem;
 }
 
 .media-zoom {

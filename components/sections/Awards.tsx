@@ -66,6 +66,14 @@ export function Awards() {
           }
         : null;
 
+  const previewFile =
+    preview && preview !== "award" && "file" in preview && preview.file
+      ? {
+          src: preview.file,
+          alt: `${preview.title} certificate from ${preview.issuer}`,
+        }
+      : null;
+
   return (
     <section className="section" id="awards" aria-labelledby="awards-title">
       <div className="wrap">
@@ -189,6 +197,17 @@ export function Awards() {
                     quality={95}
                   />
                 </button>
+              ) : item.file ? (
+                <button
+                  type="button"
+                  className="carousel-media carousel-doc"
+                  onClick={() => setPreview(item)}
+                  data-cursor="Preview"
+                  aria-label={`Open ${item.title} certificate`}
+                >
+                  <strong>{item.title}</strong>
+                  Open the original PDF
+                </button>
               ) : (
                 <div className="carousel-placeholder">
                   <strong>{item.title}</strong>
@@ -225,6 +244,17 @@ export function Awards() {
       {previewImage ? (
         <Lightbox title="Certificate preview" onClose={() => setPreview(null)}>
           <Image src={previewImage.src} alt={previewImage.alt} width={1600} height={1100} quality={95} />
+        </Lightbox>
+      ) : null}
+
+      {previewFile ? (
+        <Lightbox title="Certificate preview" onClose={() => setPreview(null)}>
+          <iframe className="lightbox-pdf" src={previewFile.src} title={previewFile.alt} />
+          <p className="lightbox-actions">
+            <a className="ink" href={previewFile.src} target="_blank" rel="noreferrer">
+              Open in a new tab
+            </a>
+          </p>
         </Lightbox>
       ) : null}
     </section>

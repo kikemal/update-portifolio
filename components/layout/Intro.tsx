@@ -9,7 +9,7 @@ export function Intro() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce || sessionStorage.getItem("kidist-intro") === "1") return;
     setOpen(true);
-    const timer = window.setTimeout(() => dismiss(), 2100);
+    const timer = window.setTimeout(() => dismiss(), 1400);
     return () => window.clearTimeout(timer);
   }, []);
 
