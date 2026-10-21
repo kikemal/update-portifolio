@@ -16,10 +16,9 @@ export function About() {
       <div className="wrap">
         <div className="about-grid">
           <Reveal className="about-col">
-            <p className="about-kicker">About me</p>
-            <h2 id="about-title" className="about-pull">
-              Creative by nature. Developer by choice.
-            </h2>
+            <p className="about-kicker" id="about-title">
+              About me
+            </p>
             <p className="about-intro">
               I’m Kidist Kemal, a creative developer from Ethiopia who enjoys
               turning ideas into useful digital experiences. I build thoughtful,
@@ -30,9 +29,6 @@ export function About() {
           </Reveal>
           <Reveal className="about-col" delay={140}>
             <p className="about-kicker">A little more about me</p>
-            <p className="about-pull">
-              Faith sits in the work without needing a spotlight.
-            </p>
             <p className="about-intro">
               I pray about my goals, and I give <em>God</em> credit for the
               things that land.
