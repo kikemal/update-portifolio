@@ -48,7 +48,7 @@ export const site = {
   email: "kidistkemal53@gmail.com",
   github: "https://github.com/kikemal",
   linkedin: "https://www.linkedin.com/in/kidist-kemal-994561264",
-  cvPath: "/files/kidist-kemal-cv.png",
+  cvPath: "/files/kidist-kemal-cv.pdf",
   phrase: "My brain has a “what if we built this?” button.",
 };
 
@@ -314,26 +314,3 @@ export function getProject(slug: string) {
 }
 
 export const availableSocials = socials.filter((item) => item.url);
-
-export const cvHighlights = [
-  {
-    label: "Focus",
-    value: "Creative development for web and mobile products that solve a real, named problem.",
-  },
-  {
-    label: "Studies",
-    value: "Information Technology at Jimma University.",
-  },
-  {
-    label: "Building with",
-    value: "React, Next.js, Flutter, JavaScript, Firebase, and Supabase — with Node.js, Express, and PostgreSQL on later backend work.",
-  },
-  {
-    label: "Selected work",
-    value: "HULUM, AYNE, QueueLess, and Tefabign.",
-  },
-  {
-    label: "Recognition",
-    value: "First place, Cursor AI Hackathon Ethiopia (team award, AYNE), July 2026.",
-  },
-];
