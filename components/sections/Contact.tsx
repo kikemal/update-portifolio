@@ -2,12 +2,21 @@
 
 import { FormEvent, useState } from "react";
 import { site } from "@/lib/content";
-import { Button } from "@/components/ui/Button";
-import { SocialLinks } from "@/components/ui/SocialLinks";
 
 type Status = "idle" | "loading" | "success" | "unconfigured" | "error";
 
-const reasons = ["Freelance project", "Collaboration", "Something else"];
+const liveSocials = [
+  { id: "github", label: "GitHub", url: site.github },
+  { id: "linkedin", label: "LinkedIn", url: site.linkedin },
+];
+
+// Add a url later to show these pills:
+// const pendingSocials = [
+//   { id: "x", label: "X", url: null },
+//   { id: "instagram", label: "Instagram", url: null },
+//   { id: "facebook", label: "Facebook", url: null },
+//   { id: "telegram", label: "Telegram", url: null },
+// ];
 
 export function Contact() {
   const [status, setStatus] = useState<Status>("idle");
@@ -19,7 +28,6 @@ export function Contact() {
     const data = new FormData(form);
     const name = String(data.get("name") || "").trim();
     const email = String(data.get("email") || "").trim();
-    const reason = String(data.get("reason") || "").trim();
     const message = String(data.get("message") || "").trim();
     const nextErrors: Record<string, string> = {};
 
@@ -27,7 +35,6 @@ export function Contact() {
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       nextErrors.email = "Please add a valid email.";
     }
-    if (!reason) nextErrors.reason = "Please choose a reason.";
     if (message.length < 12) nextErrors.message = "Tell me a little more about the idea.";
 
     setErrors(nextErrors);
@@ -38,7 +45,7 @@ export function Contact() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, reason, message }),
+        body: JSON.stringify({ name, email, message }),
       });
       const payload = (await response.json()) as { ok: boolean; reason?: string };
       if (response.status === 501 || payload.reason === "unconfigured") {
@@ -59,63 +66,66 @@ export function Contact() {
   return (
     <section className="section contact" id="contact" aria-labelledby="contact-title">
       <div className="wrap contact-grid">
-        <div>
-          <p className="kicker">Freelance & collaborations</p>
-          <h2 id="contact-title">Have an idea? Let’s explore what we could build.</h2>
+        <div className="contact-intro">
+          <h2 id="contact-title">Have an idea? Let’s build it.</h2>
           <p className="contact-lead">
-            If you have a product in mind, a messy brief, or a half-formed “what
-            if” — I would like to hear it. Freelance inquiries are welcome.
+            Got a product in mind or a rough brief? I’m open to freelance work.
           </p>
-          <div className="direct-links">
-            {site.email ? (
-              <a className="ink" href={`mailto:${site.email}`}>
-                {site.email}
+          {site.email ? (
+            <a className="contact-email" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
+          ) : null}
+          <div className="contact-pills">
+            {liveSocials.map((item) => (
+              <a
+                key={item.id}
+                className="contact-pill"
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${item.label} (opens in a new tab)`}
+              >
+                {item.label}
               </a>
-            ) : (
-              <p className="need">Email address still needed — LinkedIn is the live contact path for now.</p>
-            )}
-            <a className="ink" href={site.linkedin} target="_blank" rel="noreferrer" data-cursor="Open">
-              Message me on LinkedIn
-            </a>
-            <a className="ink" href={site.github} target="_blank" rel="noreferrer">
-              GitHub
-            </a>
+            ))}
           </div>
-          <SocialLinks />
         </div>
         <form className="form" onSubmit={onSubmit} noValidate>
-          <label className="field">
-            <span>Name</span>
-            <input name="name" autoComplete="name" required />
+          <div className="field">
+            <input
+              name="name"
+              autoComplete="name"
+              placeholder="Your name"
+              aria-label="Your name"
+              required
+            />
             {errors.name ? <span className="error">{errors.name}</span> : null}
-          </label>
-          <label className="field">
-            <span>Email</span>
-            <input name="email" type="email" autoComplete="email" required />
+          </div>
+          <div className="field">
+            <input
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="Your email"
+              aria-label="Your email"
+              required
+            />
             {errors.email ? <span className="error">{errors.email}</span> : null}
-          </label>
-          <label className="field">
-            <span>Reason</span>
-            <select name="reason" defaultValue="" required>
-              <option value="" disabled>
-                What brings you here?
-              </option>
-              {reasons.map((reason) => (
-                <option key={reason} value={reason}>
-                  {reason}
-                </option>
-              ))}
-            </select>
-            {errors.reason ? <span className="error">{errors.reason}</span> : null}
-          </label>
-          <label className="field">
-            <span>Message</span>
-            <textarea name="message" required />
+          </div>
+          <div className="field">
+            <textarea
+              name="message"
+              rows={4}
+              placeholder="Tell me about your idea"
+              aria-label="Tell me about your idea"
+              required
+            />
             {errors.message ? <span className="error">{errors.message}</span> : null}
-          </label>
-          <Button type="submit" disabled={status === "loading"}>
-            {status === "loading" ? "Sending" : "Send the idea"}
-          </Button>
+          </div>
+          <button className="contact-send" type="submit" disabled={status === "loading"}>
+            {status === "loading" ? "Sending" : "Send message"}
+          </button>
           <p
             className={`form-status ${status === "success" || status === "unconfigured" ? "ok" : status === "error" ? "bad" : ""}`}
             role="status"
