@@ -4,7 +4,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { cx } from "@/lib/utils";
 
-export function Portrait({ className }: { className?: string }) {
+export function Portrait({
+  className,
+  compact = false,
+}: {
+  className?: string;
+  compact?: boolean;
+}) {
   const [wobble, setWobble] = useState(false);
 
   function shake() {
@@ -18,7 +24,7 @@ export function Portrait({ className }: { className?: string }) {
   }
 
   return (
-    <figure className={cx("portrait-frame", className)}>
+    <figure className={cx("portrait-frame", compact && "is-compact", className)}>
       <button
         type="button"
         className="portrait-hit"
@@ -34,14 +40,16 @@ export function Portrait({ className }: { className?: string }) {
             fill
             unoptimized
             priority
-            sizes="(max-width: 640px) 168px, (max-width: 900px) 240px, 270px"
+            sizes={compact ? "128px" : "(max-width: 640px) 168px, (max-width: 900px) 240px, 270px"}
           />
         </span>
       </button>
-      <figcaption className="portrait-caption">
-        <span>Portrait</span>
-        <span>Quiet first. Then the making starts.</span>
-      </figcaption>
+      {compact ? null : (
+        <figcaption className="portrait-caption">
+          <span>Portrait</span>
+          <span>Quiet first. Then the making starts.</span>
+        </figcaption>
+      )}
     </figure>
   );
 }
