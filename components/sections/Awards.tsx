@@ -92,44 +92,35 @@ export function Awards() {
           <div className="ayne-award">
             <article className="ayne-card">
               {ayne?.media[0]?.src ? (
-                <div className="ayne-card-media">
+                <div className="pair-media">
                   <Image
                     src={ayne.media[0].src}
                     alt={ayne.media[0].alt}
                     fill
                     quality={90}
-                    sizes="(max-width: 900px) 100vw, 48vw"
+                    sizes="(max-width: 820px) 100vw, 48vw"
                   />
                 </div>
               ) : null}
-              <p className="kicker">{ayne?.kicker} · {ayne?.year}</p>
+              <p className="pair-label">
+                {ayne?.kicker} · {ayne?.year}
+              </p>
               <h3>{ayne?.name}</h3>
-              <p>
+              <p className="pair-copy pair-clamp">
                 AYNE is a voice-first AI assistant concept designed to support
                 people with visual impairments — helping them navigate and
                 understand a physical environment through spoken commands.
               </p>
-              <p>
-                Built as a team MVP at the Cursor AI Hackathon Ethiopia, with
-                teammates Mulualem Mekonin, Melkamu Teshome, Obsan Habtamu, and
-                Samuel Feyisa.
+              <p className="pair-copy">
+                Team MVP built at the Cursor AI Hackathon Ethiopia.
               </p>
               <Button href="/work/ayne">Read the case</Button>
             </article>
 
             <article className="award-card">
-              <p className="award-mark">1st place</p>
-              <h3>Cursor AI Hackathon Ethiopia</h3>
-              <p className="kicker">
-                {featuredAward.date} · {featuredAward.placeDetail}
-              </p>
-              <p>
-                A team award for AYNE. I was one member of that team — not the
-                sole winner.
-              </p>
               <button
                 type="button"
-                className="award-shot media-zoom"
+                className="pair-media award-shot media-zoom"
                 onClick={() => setPreview("award")}
                 data-cursor="View"
                 aria-label="Open first-place certificate"
@@ -137,11 +128,23 @@ export function Awards() {
                 <Image
                   src={featuredAward.image}
                   alt="First-place certificate from the Cursor AI Hackathon Ethiopia, presented to Kidist Kemal Muhamed."
-                  width={1200}
-                  height={840}
+                  fill
                   quality={95}
+                  sizes="(max-width: 820px) 100vw, 48vw"
                 />
               </button>
+              <div className="pair-meta">
+                <p className="pair-label">Jul 25–26, 2026 · Addis Ababa</p>
+                <span className="pair-pill">1st place</span>
+              </div>
+              <h3>{featuredAward.title}</h3>
+              <p className="pair-copy">
+                A team award for AYNE. I was one member of that team — not the
+                sole winner.
+              </p>
+              <Button type="button" ghost onClick={() => setPreview("award")}>
+                View certificate
+              </Button>
             </article>
           </div>
         </Reveal>
