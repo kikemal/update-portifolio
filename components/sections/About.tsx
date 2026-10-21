@@ -28,7 +28,7 @@ export function About() {
               more accessible.
             </p>
           </Reveal>
-          <Reveal className="about-col" delay={80}>
+          <Reveal className="about-col" delay={140}>
             <p className="about-kicker">A little more about me</p>
             <p className="about-pull">
               Faith sits in the work without needing a spotlight.

@@ -1,9 +1,11 @@
+import { Reveal } from "@/components/ui/Reveal";
+
 export function Resume() {
   const cvHref = "/files/kidist-kemal-cv.pdf";
 
   return (
     <section className="section" id="cv" aria-labelledby="cv-title">
-      <div className="wrap cv-block">
+      <Reveal className="wrap cv-block">
         <div className="cv-copy">
           <p className="cv-kicker">On paper</p>
           <h2 id="cv-title">CV</h2>
@@ -29,7 +31,7 @@ export function Resume() {
             Download CV
           </a>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

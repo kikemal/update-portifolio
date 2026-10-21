@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { site } from "@/lib/content";
+import { Reveal } from "@/components/ui/Reveal";
 
 type Status = "idle" | "loading" | "success" | "unconfigured" | "error";
 
@@ -66,7 +67,8 @@ export function Contact() {
   return (
     <section className="section contact" id="contact" aria-labelledby="contact-title">
       <div className="wrap contact-grid">
-        <div className="contact-intro">
+        <Reveal>
+          <div className="contact-intro">
           <h2 id="contact-title">Have an idea? Let’s build it.</h2>
           <p className="contact-lead">
             Got a product in mind or a rough brief? I’m open to freelance work.
@@ -91,6 +93,8 @@ export function Contact() {
             ))}
           </div>
         </div>
+        </Reveal>
+        <Reveal delay={120}>
         <form className="form" onSubmit={onSubmit} noValidate>
           <div className="field">
             <input
@@ -137,6 +141,7 @@ export function Contact() {
             {status === "error" && "Something went wrong. Please try LinkedIn, or try again in a moment."}
           </p>
         </form>
+        </Reveal>
       </div>
     </section>
   );

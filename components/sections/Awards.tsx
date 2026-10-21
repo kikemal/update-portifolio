@@ -15,18 +15,20 @@ export function Awards() {
   return (
     <section className="section" id="awards" aria-labelledby="awards-title">
       <div className="wrap">
-        <div className="section-head">
-          <div>
-            <p className="kicker">Team achievement</p>
-            <h2 id="awards-title">First place</h2>
-          </div>
-          <p className="section-note">
-            AYNE and the hackathon award belong together — a shared night of
-            building, not a solo trophy.
-          </p>
-        </div>
-
         <Reveal>
+          <div className="section-head">
+            <div>
+              <p className="kicker">Team achievement</p>
+              <h2 id="awards-title">First place</h2>
+            </div>
+            <p className="section-note">
+              AYNE and the hackathon award belong together — a shared night of
+              building, not a solo trophy.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={80} variant="media">
           <div className="ayne-award">
             <article className="ayne-card">
               {ayne?.media[0]?.src ? (
@@ -87,7 +89,9 @@ export function Awards() {
           </div>
         </Reveal>
 
-        <CertificateCarousel />
+        <Reveal delay={140}>
+          <CertificateCarousel />
+        </Reveal>
       </div>
 
       {previewAward ? (
