@@ -1,5 +1,5 @@
 export type SocialLink = {
-  id: "github" | "linkedin" | "x" | "instagram" | "facebook" | "telegram";
+  id: "github" | "linkedin" | "x" | "instagram" | "facebook" | "telegram" | "whatsapp";
   label: string;
   url: string | null;
 };
@@ -48,6 +48,8 @@ export const site = {
   email: "kidistkemal53@gmail.com",
   github: "https://github.com/kikemal",
   linkedin: "https://www.linkedin.com/in/kidist-kemal-994561264",
+  telegram: "https://t.me/K_3299",
+  whatsapp: "https://wa.me/251924327899",
   cvPath: "/files/kidist-kemal-cv.pdf",
   phrase: "My brain has a “what if we built this?” button.",
 };
@@ -59,10 +61,11 @@ export const socials: SocialLink[] = [
     label: "LinkedIn",
     url: "https://www.linkedin.com/in/kidist-kemal-994561264",
   },
+  { id: "telegram", label: "Telegram", url: "https://t.me/K_3299" },
+  { id: "whatsapp", label: "WhatsApp", url: "https://wa.me/251924327899" },
   { id: "x", label: "X", url: null },
   { id: "instagram", label: "Instagram", url: null },
   { id: "facebook", label: "Facebook", url: null },
-  { id: "telegram", label: "Telegram", url: null },
 ];
 
 export const nav = [

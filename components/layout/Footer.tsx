@@ -46,7 +46,7 @@ export function Footer() {
                     <a
                       href={item.url ?? undefined}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="ink"
                     >
                       {item.label}

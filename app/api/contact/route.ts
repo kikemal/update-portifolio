@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 
+// Optional email path. The live contact form currently opens WhatsApp with a
+// prefilled message so visitors can review and send it themselves. Set
+// FORMSPREE_FORM_ID later if you want this route to deliver email instead.
+
 type Payload = {
   name?: string;
   email?: string;
