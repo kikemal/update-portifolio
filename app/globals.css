@@ -1571,7 +1571,8 @@ a.social-pill:focus-visible {
 
 .case-hero-media,
 button.case-hero-media {
-  display: block;
+  display: grid;
+  place-items: center;
   width: 100%;
   max-width: 800px;
   overflow: hidden;
@@ -1584,9 +1585,10 @@ button.case-hero-media {
 .case-hero-media video,
 .project-screenshot {
   display: block;
-  width: 100%;
-  max-width: 800px;
+  width: auto;
   height: auto;
+  max-width: min(800px, 100%);
+  max-height: min(380px, 48vh);
   margin-inline: auto;
   object-fit: contain;
   background: var(--bg-soft);
@@ -1597,6 +1599,7 @@ button.case-hero-media {
   button.case-hero-media,
   .project-screenshot {
     max-width: 100%;
+    max-height: min(280px, 42vh);
   }
 }
 
