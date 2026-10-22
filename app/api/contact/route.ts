@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 
+// Optional email path. The live contact form currently opens WhatsApp with a
+// prefilled message so visitors can review and send it themselves. Set
+// FORMSPREE_FORM_ID later if you want this route to deliver email instead.
+
 type Payload = {
   name?: string;
   email?: string;
-  reason?: string;
   message?: string;
 };
 
@@ -11,10 +14,9 @@ export async function POST(request: Request) {
   const body = (await request.json()) as Payload;
   const name = String(body.name || "").trim();
   const email = String(body.email || "").trim();
-  const reason = String(body.reason || "").trim();
   const message = String(body.message || "").trim();
 
-  if (!name || !email || !reason || message.length < 12) {
+  if (!name || !email || message.length < 12) {
     return NextResponse.json({ ok: false, reason: "invalid" }, { status: 400 });
   }
 
@@ -32,7 +34,6 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       name,
       email,
-      reason,
       message,
       _subject: `Portfolio inquiry from ${name}`,
     }),

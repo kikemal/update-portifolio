@@ -3,14 +3,15 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { nav, site } from "@/lib/content";
+import { Logo } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cx } from "@/lib/utils";
 
-const sectionIds = ["work", "about", "approach", "awards", "cv", "contact"];
+const sectionIds = ["about", "work", "awards", "cv", "contact"];
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("work");
+  const [active, setActive] = useState("about");
 
   useEffect(() => {
     const nodes = sectionIds
@@ -36,8 +37,8 @@ export function Navigation() {
   return (
     <header className="nav">
       <div className="wrap nav-inner">
-        <Link href="/#" className="brand" data-cursor="Home">
-          {site.shortName}
+        <Link href="/#" className="brand" data-cursor="Home" aria-label={`${site.name}, home`}>
+          <Logo variant="nav" />
         </Link>
         <nav className="nav-links" aria-label="Primary">
           {nav.map((item) => (

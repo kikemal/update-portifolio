@@ -1,64 +1,59 @@
+"use client";
+
+import { useState } from "react";
+import { whatIfs } from "@/lib/content";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function About() {
+  const [idea, setIdea] = useState(0);
+
+  function cycle() {
+    setIdea((value) => (value + 1) % whatIfs.length);
+  }
+
   return (
-    <section className="section" id="about" aria-labelledby="about-title">
+    <section className="about" id="about" aria-labelledby="about-title">
       <div className="wrap">
-        <div className="section-head">
-          <div>
-            <p className="kicker">The person</p>
-            <h2 id="about-title">About</h2>
-          </div>
-          <p className="section-note">
-            A little quieter in person. Always somewhere in the middle of a
-            question.
-          </p>
-        </div>
         <div className="about-grid">
-          <Reveal>
-            <p className="pull">
-              I like sitting with a problem until it becomes a thing someone can
-              actually use.
+          <Reveal className="about-col">
+            <p className="about-kicker" id="about-title">
+              About me
+            </p>
+            <p className="about-intro">
+              I’m Kidist Kemal, a creative developer from Ethiopia who enjoys
+              turning ideas into useful digital experiences. I build thoughtful,
+              human-centered products around technology, usability, and
+              purposeful design — solving real problems and making technology
+              more accessible.
             </p>
           </Reveal>
-          <div>
-            <div className="about-copy">
-              <p>
-                I’m <strong>Kidist Kemal</strong>, a creative developer from
-                Ethiopia. I enjoy solving problems, learning as the tools change,
-                and imagining products that did not have to stay as sketches.
-              </p>
-              <p>
-                The phrase I come back to is simple: my brain has a{" "}
-                <strong>“what if we built this?”</strong> button. I press it when
-                a queue lasts too long, when an opportunity looks shiny but
-                unclear, when a parent is waiting on a report card that arrives
-                too late.
-              </p>
-              <p>
-                I can be quiet at first. That doesn’t mean nothing is happening.
-                I’m usually turning the idea over — the feature, the interaction,
-                the conversation it might start — and looking for the version
-                that helps.
-              </p>
-              <p>
-                Away from the screen I care about fashion, photography, and
-                conversations that mean something. Those things keep my eye on
-                pacing, texture, and how a person feels when they enter a space.
-              </p>
-            </div>
-            <div className="about-chips">
-              <span className="chip">Problem-solving</span>
-              <span className="chip">Learning in public</span>
-              <span className="chip">Fashion</span>
-              <span className="chip">Photography</span>
-              <span className="chip">Good conversation</span>
-            </div>
-            <p className="faith">
-              Faith sits in the work without needing a spotlight. I pray about
-              my goals, and I give <em>God</em> credit for the things that land.
+          <Reveal className="about-col" delay={140}>
+            <p className="about-kicker">A little more about me</p>
+            <p className="about-intro">
+              I pray about my goals, and I give <em>God</em> credit for the
+              things that land.
             </p>
-          </div>
+            <div className="what-if">
+              <p className="what-if-label">
+                My brain has a{" "}
+                <button
+                  type="button"
+                  className="what-if-btn"
+                  onMouseEnter={cycle}
+                  onFocus={cycle}
+                  onClick={cycle}
+                  aria-describedby="what-if-idea"
+                  data-cursor="Play"
+                >
+                  “what if we built this?”
+                </button>{" "}
+                button.
+              </p>
+              <span id="what-if-idea" className="what-if-next" aria-live="polite">
+                <span key={idea}>{whatIfs[idea]}</span>
+              </span>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -6,17 +6,22 @@ export function Reveal({
   children,
   className,
   delay = 0,
+  variant,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  variant?: "media";
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    ) {
       node.classList.add("is-in");
       return;
     }
@@ -28,7 +33,7 @@ export function Reveal({
           observer.unobserve(node);
         }
       },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
     );
 
     observer.observe(node);
@@ -36,7 +41,11 @@ export function Reveal({
   }, []);
 
   return (
-    <div ref={ref} className={`reveal-io ${className ?? ""}`} style={{ transitionDelay: `${delay}ms` }}>
+    <div
+      ref={ref}
+      className={`reveal-io${variant === "media" ? " reveal-io--media" : ""}${className ? ` ${className}` : ""}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
       {children}
     </div>
   );

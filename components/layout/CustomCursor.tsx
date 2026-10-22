@@ -28,7 +28,7 @@ export function CustomCursor() {
       cursor.classList.add("is-on");
       const target = event.target as HTMLElement | null;
       const hot = target?.closest(
-        "a, button, input, textarea, select, label, .project-row, .cert-row, .what-if-btn, .media-zoom",
+        "a, button, input, textarea, select, label, .project-row, .carousel-media, .portrait-hit, .award-shot, .what-if-btn, .media-zoom",
       ) as HTMLElement | null;
       cursor.classList.toggle("is-hot", Boolean(hot));
       const text = hot?.dataset.cursor;

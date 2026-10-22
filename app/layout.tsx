@@ -46,6 +46,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ThemeProvider>
+          <noscript>
+            <style>{`.reveal,.reveal-io,.about-col.reveal-io .about-kicker,.about-col.reveal-io .about-pull,.about-col.reveal-io .about-intro,.about-col.reveal-io .what-if{opacity:1!important;transform:none!important;visibility:visible!important}.about-intro em{color:var(--ink)}`}</style>
+          </noscript>
           <a className="skip-link" href="#main">
             Skip to content
           </a>
