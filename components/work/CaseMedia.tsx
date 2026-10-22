@@ -18,7 +18,13 @@ export function CaseMedia({ item }: { item: ProjectMedia }) {
           data-cursor="Expand"
           aria-label={`Expand ${item.alt}`}
         >
-          <Image src={item.src} alt={item.alt} width={1600} height={1000} />
+          <Image
+            className="project-screenshot"
+            src={item.src}
+            alt={item.alt}
+            width={1600}
+            height={1000}
+          />
         </button>
         {open ? (
           <Lightbox title={item.alt} onClose={() => setOpen(false)}>

@@ -1573,19 +1573,31 @@ a.social-pill:focus-visible {
 button.case-hero-media {
   display: block;
   width: 100%;
+  max-width: 800px;
   overflow: hidden;
-  margin: 1.2rem 0 0;
+  margin: 1rem auto 0;
   background: var(--bg-soft);
-  border-radius: 1.1rem;
+  border-radius: 12px;
 }
 
 .case-hero-media img,
-.case-hero-media video {
+.case-hero-media video,
+.project-screenshot {
+  display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  max-width: 800px;
+  height: auto;
+  margin-inline: auto;
   object-fit: contain;
-  object-position: top center;
   background: var(--bg-soft);
+}
+
+@media (max-width: 820px) {
+  .case-hero-media,
+  button.case-hero-media,
+  .project-screenshot {
+    max-width: 100%;
+  }
 }
 
 .case-grid {
