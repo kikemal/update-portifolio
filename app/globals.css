@@ -530,12 +530,14 @@ body,
   overflow: hidden;
   text-align: center;
   border: 0;
-  --pixel-in: 0.7s;
-  --name-in: 0.88s;
-  --name-float: 5.4s;
-  --name-float-delay: 1s;
-  --name-float-rise: -5.5px;
-  --name-shimmer: 10.5s;
+  --pixel-in: 0.42s;
+  --name-in: 0.5s;
+  --name-float: 2.2s;
+  --name-float-delay: 0.62s;
+  --name-float-rise: -10px;
+  --name-shimmer: 3.6s;
+  --pixel-pulse: 1.8s;
+  --pixel-glow: 0 0 11px 2px color-mix(in srgb, var(--pixel-glow-c) 72%, transparent);
 }
 
 .hero-field {
@@ -574,25 +576,52 @@ body,
 .hero-pixel-t4 { background: var(--pixel-4); }
 
 .hero-pixel-live {
+  --drift-x: 0px;
+  --drift-y: 0px;
   animation:
     pixel-in var(--pixel-in) var(--ease) var(--pixel-delay, 0s) both,
-    pixel-breathe 4.4s ease-in-out calc(var(--pixel-delay, 0s) + 0.9s) infinite;
+    pixel-breathe var(--pixel-pulse) ease-in-out calc(var(--pixel-delay, 0s) + 0.35s) infinite;
 }
 
-.hero-pixel-live-1 { animation-duration: var(--pixel-in), 3.6s; }
-.hero-pixel-live-2 { animation-duration: var(--pixel-in), 5.2s; }
-.hero-pixel-live-3 { animation-duration: var(--pixel-in), 6.1s; }
-.hero-pixel-live-4 { animation-duration: var(--pixel-in), 4s; }
-.hero-pixel-live-5 { animation-duration: var(--pixel-in), 7s; }
+.hero-pixel-live-1 { animation-duration: var(--pixel-in), 1.15s; }
+.hero-pixel-live-2 { animation-duration: var(--pixel-in), 1.6s; }
+.hero-pixel-live-3 { animation-duration: var(--pixel-in), 2.15s; }
+.hero-pixel-live-4 { animation-duration: var(--pixel-in), 1.35s; }
+.hero-pixel-live-5 { animation-duration: var(--pixel-in), 2.45s; }
 
 .hero-pixel-glow {
-  box-shadow: 0 0 8px 1px color-mix(in srgb, var(--pixel-glow-c) 58%, transparent);
+  box-shadow: 0 0 6px 0 color-mix(in srgb, var(--pixel-glow-c) 40%, transparent);
+  animation:
+    pixel-in var(--pixel-in) var(--ease) var(--pixel-delay, 0s) both,
+    pixel-glow-pulse 1.4s ease-in-out calc(var(--pixel-delay, 0s) + 0.28s) infinite;
 }
 
 .hero-pixel-drift {
+  --drift-x: 8px;
+  --drift-y: -10px;
   animation:
     pixel-in var(--pixel-in) var(--ease) var(--pixel-delay, 0s) both,
-    pixel-drift 9s ease-in-out calc(var(--pixel-delay, 0s) + 1.1s) infinite;
+    pixel-drift 3.8s ease-in-out calc(var(--pixel-delay, 0s) + 0.4s) infinite;
+}
+
+.hero-pixel-drift-0 { --drift-x: 8px; --drift-y: -10px; }
+.hero-pixel-drift-1 { --drift-x: -9px; --drift-y: 6px; }
+.hero-pixel-drift-2 { --drift-x: 11px; --drift-y: 5px; }
+.hero-pixel-drift-3 { --drift-x: -6px; --drift-y: -8px; }
+.hero-pixel-drift-4 { --drift-x: 7px; --drift-y: 12px; }
+.hero-pixel-drift-5 { --drift-x: -12px; --drift-y: -5px; }
+
+.hero-pixel-drift-1:not(.hero-pixel-live) { animation-duration: var(--pixel-in), 4.4s; }
+.hero-pixel-drift-2:not(.hero-pixel-live) { animation-duration: var(--pixel-in), 5s; }
+.hero-pixel-drift-3:not(.hero-pixel-live) { animation-duration: var(--pixel-in), 3.4s; }
+.hero-pixel-drift-4:not(.hero-pixel-live) { animation-duration: var(--pixel-in), 4.8s; }
+.hero-pixel-drift-5:not(.hero-pixel-live) { animation-duration: var(--pixel-in), 3.2s; }
+
+.hero-pixel-live.hero-pixel-glow {
+  animation:
+    pixel-in var(--pixel-in) var(--ease) var(--pixel-delay, 0s) both,
+    pixel-breathe var(--pixel-pulse) ease-in-out calc(var(--pixel-delay, 0s) + 0.35s) infinite,
+    pixel-glow-pulse 1.4s ease-in-out calc(var(--pixel-delay, 0s) + 0.28s) infinite;
 }
 
 .hero-pixel-sync {
@@ -649,7 +678,7 @@ body,
   display: inline-block;
   animation:
     name-in var(--name-in) var(--ease) 0.12s both,
-    name-float var(--name-float) cubic-bezier(0.45, 0.05, 0.55, 0.95) var(--name-float-delay) infinite;
+    name-float var(--name-float) cubic-bezier(0.37, 0, 0.63, 1) var(--name-float-delay) infinite;
 }
 
 .hero-title-motion::after {
@@ -659,17 +688,17 @@ body,
   pointer-events: none;
   background: linear-gradient(
     105deg,
-    transparent 38%,
-    color-mix(in srgb, #f4efe6 72%, transparent) 46%,
-    color-mix(in srgb, #e8836b 28%, transparent) 50%,
-    color-mix(in srgb, #f4efe6 55%, transparent) 54%,
-    transparent 62%
+    transparent 36%,
+    color-mix(in srgb, #f4efe6 55%, transparent) 45%,
+    color-mix(in srgb, #e8836b 58%, transparent) 50%,
+    color-mix(in srgb, #f4efe6 40%, transparent) 55%,
+    transparent 64%
   );
   background-size: 240% 100%;
   background-position: 130% 0;
   mix-blend-mode: soft-light;
   opacity: 0;
-  animation: name-shimmer var(--name-shimmer) ease-in-out calc(var(--name-float-delay) + 1.6s) infinite;
+  animation: name-shimmer var(--name-shimmer) ease-in-out calc(var(--name-float-delay) + 1.2s) infinite;
 }
 
 [data-theme="dark"] .hero-title-motion::after {
@@ -698,6 +727,27 @@ body,
   font-family: var(--font-sans);
   font-size: 1rem;
   font-style: normal;
+}
+
+.hero .reveal {
+  transform: translateY(8px);
+  animation-duration: 0.48s;
+}
+
+.hero-photo.reveal {
+  animation-delay: 0s;
+}
+
+.hero-role.reveal {
+  animation-delay: 0.24s;
+}
+
+.hero-stack.reveal {
+  animation-delay: 0.38s;
+}
+
+.hero-tagline.reveal {
+  animation-delay: 0.52s;
 }
 
 /* About */
@@ -2168,12 +2218,15 @@ button.case-hero-media {
 @keyframes pixel-breathe {
   0%, 100% {
     opacity: var(--pixel-op, 0.7);
+    transform: translate(-50%, -50%) scale(1);
   }
-  42% {
-    opacity: calc(var(--pixel-op, 0.7) * 0.38);
-  }
-  68% {
-    opacity: min(1, calc(var(--pixel-op, 0.7) * 1.18));
+  50% {
+    opacity: min(1, calc(var(--pixel-op, 0.7) * 1.34));
+    transform: translate(
+        calc(-50% + var(--drift-x, 0px)),
+        calc(-50% + var(--drift-y, 0px))
+      )
+      scale(1.16);
   }
 }
 
@@ -2182,7 +2235,19 @@ button.case-hero-media {
     transform: translate(-50%, -50%);
   }
   50% {
-    transform: translate(calc(-50% + 1px), calc(-50% - 2px));
+    transform: translate(
+      calc(-50% + var(--drift-x, 8px)),
+      calc(-50% + var(--drift-y, -8px))
+    );
+  }
+}
+
+@keyframes pixel-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 4px 0 color-mix(in srgb, var(--pixel-glow-c) 28%, transparent);
+  }
+  50% {
+    box-shadow: var(--pixel-glow);
   }
 }
 
@@ -2199,38 +2264,46 @@ button.case-hero-media {
 
 @keyframes name-float {
   0%, 100% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(calc(var(--name-float-rise) * 0.55)) rotate(0.7deg) scale(1.008);
   }
   50% {
-    transform: translateY(var(--name-float-rise)) rotate(-0.35deg);
+    transform: translateY(var(--name-float-rise)) rotate(-0.75deg) scale(1.015);
+  }
+  75% {
+    transform: translateY(calc(var(--name-float-rise) * 0.4)) rotate(0.55deg) scale(1.006);
   }
 }
 
 @keyframes name-shimmer {
-  0%, 68%, 100% {
-    background-position: 130% 0;
+  0%, 76%, 100% {
+    background-position: 140% 0;
     opacity: 0;
   }
-  74% {
-    opacity: 0.42;
-  }
-  82% {
-    background-position: -30% 0;
-    opacity: 0.28;
+  80% {
+    opacity: 0.78;
   }
   90% {
+    background-position: -40% 0;
+    opacity: 0.4;
+  }
+  96% {
     opacity: 0;
   }
 }
 
 @keyframes pixel-name-sync {
-  0%, 40%, 62%, 100% {
+  0%, 100% {
     opacity: var(--pixel-op, 0.7);
     box-shadow: none;
+    transform: translate(-50%, -50%) scale(1);
   }
   50% {
-    opacity: min(1, calc(var(--pixel-op, 0.7) * 1.38));
-    box-shadow: 0 0 6px 0 color-mix(in srgb, var(--pixel-glow-c) 36%, transparent);
+    opacity: min(1, calc(var(--pixel-op, 0.7) * 1.45));
+    box-shadow: var(--pixel-glow);
+    transform: translate(-50%, -50%) scale(1.2);
   }
 }
 

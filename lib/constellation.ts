@@ -10,7 +10,7 @@ export type Pixel = {
   delay: number;
   live?: number;
   glow?: boolean;
-  drift?: boolean;
+  drift?: number;
   sync?: boolean;
   tier: PixelTier;
 };
@@ -67,9 +67,9 @@ function makePixel(
     tone: pickTone(rand, brightBias),
     op: Number((0.38 + rand() * 0.5).toFixed(2)),
     delay: Number((0.04 + rand() * 0.85).toFixed(2)),
-    live: liveRoll > 0.78 ? Math.floor(rand() * 6) : undefined,
-    glow: liveRoll > 0.97,
-    drift: liveRoll > 0.9 && liveRoll <= 0.95,
+    live: liveRoll > 0.48 ? Math.floor(rand() * 6) : undefined,
+    glow: liveRoll > 0.9,
+    drift: liveRoll > 0.68 ? Math.floor(rand() * 6) : undefined,
     tier: pickTier(x, y, rand, edge),
   };
 }
@@ -165,6 +165,7 @@ function markSync(pixels: Pixel[], edge: "left" | "right") {
     pixel.sync = true;
     pixel.live = undefined;
     pixel.drift = undefined;
+    pixel.glow = undefined;
   });
 
   return pixels;
