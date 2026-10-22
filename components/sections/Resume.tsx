@@ -9,10 +9,6 @@ export function Resume() {
         <div className="cv-copy">
           <p className="cv-kicker">On paper</p>
           <h2 id="cv-title">CV</h2>
-          <p className="cv-lead">
-            A concise picture of studies, tools, projects, and the team award.
-            Work history is only what has been confirmed.
-          </p>
         </div>
         <div className="cv-actions">
           <a
