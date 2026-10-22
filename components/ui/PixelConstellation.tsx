@@ -14,6 +14,7 @@ function PixelDot({ pixel }: { pixel: Pixel }) {
         pixel.live != null && `hero-pixel-live hero-pixel-live-${pixel.live}`,
         pixel.glow && "hero-pixel-glow",
         pixel.drift && "hero-pixel-drift",
+        pixel.sync && "hero-pixel-sync",
       )}
       style={
         {

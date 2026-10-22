@@ -16,8 +16,8 @@ export function Hero() {
           unoptimized
           priority
         />
-        <h1 id="hero-title" className="reveal delay-1">
-          Kidist Kemal
+        <h1 id="hero-title" className="hero-title">
+          <span className="hero-title-motion">Kidist Kemal</span>
         </h1>
         <p className="hero-role reveal delay-2">Full-Stack Developer</p>
         <p className="hero-stack reveal delay-3">

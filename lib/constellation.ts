@@ -11,6 +11,7 @@ export type Pixel = {
   live?: number;
   glow?: boolean;
   drift?: boolean;
+  sync?: boolean;
   tier: PixelTier;
 };
 
@@ -108,7 +109,7 @@ function generateLeft(): Pixel[] {
     }
   }
 
-  return pixels;
+  return markSync(pixels, "left");
 }
 
 function generateRight(): Pixel[] {
@@ -147,6 +148,24 @@ function generateRight(): Pixel[] {
     const pixel = makePixel(55 + rand() * 42, 8 + rand() * 84, rand, "right", 0);
     if (pixel) pixels.push(pixel);
   }
+
+  return markSync(pixels, "right");
+}
+
+function markSync(pixels: Pixel[], edge: "left" | "right") {
+  const candidates = pixels
+    .filter((pixel) =>
+      edge === "left"
+        ? pixel.x > 46 && pixel.y > 38 && pixel.y < 64
+        : pixel.x < 54 && pixel.y > 36 && pixel.y < 66,
+    )
+    .sort((a, b) => (edge === "left" ? b.x - a.x : a.x - b.x));
+
+  candidates.slice(0, 3).forEach((pixel) => {
+    pixel.sync = true;
+    pixel.live = undefined;
+    pixel.drift = undefined;
+  });
 
   return pixels;
 }
