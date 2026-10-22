@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { availableSocials, nav, site } from "@/lib/content";
 import { AnimatedLink } from "@/components/ui/AnimatedLink";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -16,7 +18,7 @@ export function Footer() {
         </p>
         <div className="footer-main">
           <div className="footer-idea">
-            <a className="footer-cta" href="/#contact" data-cursor="Talk">
+            <Link className="footer-cta" href="/#contact" data-cursor="Talk">
               <span className="footer-spark" aria-hidden="true">
                 ✦
               </span>
@@ -25,7 +27,7 @@ export function Footer() {
               <span className="footer-arrow" aria-hidden="true">
                 →
               </span>
-            </a>
+            </Link>
             <p className="footer-offer">Let’s make something meaningful.</p>
           </div>
           <div className="footer-aside">
@@ -68,6 +70,11 @@ export function Footer() {
           <span>Make it matter</span>
           <span className="footer-rule" aria-hidden="true" />
         </p>
+        <div className="footer-brand-row">
+          <Link href="/#" className="footer-logo" aria-label={`${site.name}, home`}>
+            <Logo variant="lockup" />
+          </Link>
+        </div>
         <div className="footer-meta">
           <p>
             © {year} {site.name} · Built with care in {site.location}

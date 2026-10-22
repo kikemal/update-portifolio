@@ -357,9 +357,80 @@ body,
 }
 
 .brand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-height: 36px;
+  color: inherit;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.72rem;
+  min-width: 0;
+  color: inherit;
+  line-height: 1;
+}
+
+.logo-mark {
+  display: block;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.logo-k {
+  fill: currentColor;
+}
+
+.logo-accent {
+  fill: var(--accent);
+}
+
+.logo-mono .logo-accent {
+  fill: var(--bg);
+}
+
+.logo-wordmark {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
-  letter-spacing: -0.03em;
+  font-size: 1.12rem;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.logo-lockup .logo-wordmark {
+  font-size: 1.32rem;
+}
+
+.logo-nav .logo-family {
+  display: none;
+}
+
+.nav .logo-k {
+  animation: logo-in 0.55s var(--ease) both;
+}
+
+.nav .logo-accent {
+  animation: logo-accent-in 0.45s var(--ease) 0.22s both;
+}
+
+@keyframes logo-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes logo-accent-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .nav-links {
@@ -1528,6 +1599,24 @@ a.social-pill:focus-visible {
   white-space: nowrap;
 }
 
+.footer-brand-row {
+  display: flex;
+  margin-top: 1.35rem;
+}
+
+.footer-logo {
+  color: var(--footer-ink);
+}
+
+.footer-logo .logo-accent {
+  fill: var(--footer-accent);
+}
+
+.footer-logo.logo-mono .logo-accent,
+.footer .logo-mono .logo-accent {
+  fill: var(--footer-bg);
+}
+
 .footer-meta {
   display: flex;
   justify-content: space-between;
@@ -1891,6 +1980,12 @@ button.case-hero-media {
   72% { transform: rotate(1.8deg); }
 }
 
+@media (min-width: 1080px) {
+  .logo-nav .logo-family {
+    display: inline;
+  }
+}
+
 @media (max-width: 900px) {
   .work-layout,
   .case-grid,
@@ -1952,6 +2047,10 @@ button.case-hero-media {
 @media (max-width: 640px) {
   :root {
     --page: 1.1rem;
+  }
+
+  .logo-nav .logo-wordmark {
+    display: none;
   }
 
   .btn {
