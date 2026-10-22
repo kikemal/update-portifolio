@@ -1,8 +1,11 @@
 import Image from "next/image";
+import { PixelConstellation } from "@/components/ui/PixelConstellation";
 
 export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
+      <PixelConstellation side="left" />
+      <PixelConstellation side="right" />
       <div className="wrap hero-inner">
         <Image
           className="hero-photo reveal"
