@@ -173,17 +173,29 @@ export const projects: Project[] = [
     slug: "queueless",
     name: "QueueLess",
     kicker: "Waiting, redesigned",
+    year: "2026",
     summary:
       "A queue product that lets people join a line from their phone while businesses manage waiting in real time — skip the line, keep the time.",
     problem:
       "Physical queues cost people time they cannot get back, and businesses have little visibility into who is waiting.",
     audience: "Customers joining a queue from a phone, and businesses running a live line.",
-    role: undefined,
-    process: undefined,
+    role:
+      "Sole listed contributor on the public GitHub repo. I built QueueLess as a multi-tenant product: public join without an account, QR codes, customer tickets, and a staff dashboard for queues, team, analytics, and settings. Later commits were authored under my account with Cursor as a coding partner.",
+    process:
+      "Work went in phases on GitHub — database and auth first, then public join and tickets, QR codes, live updates, staff invitations, analytics, business hours, and production hardening.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Supabase",
+      "PostgreSQL",
+      "QR codes",
+    ],
     results:
-      "The product includes a public homepage, a business dashboard, and a QR code that opens a public queue. A live public URL still needs to be added here.",
+      "The public repository includes a marketing homepage, staff dashboard, public join via QR or link, and customer tickets. A working live demo is not up yet — the Vercel listing currently returns an error.",
     demoUrl: null,
-    repoUrl: null,
+    repoUrl: "https://github.com/kikemal/ququeless",
     media: [
       {
         type: "image",
@@ -196,12 +208,7 @@ export const projects: Project[] = [
         alt: "QueueLess business dashboard showing a public-queue QR code.",
       },
     ],
-    pending: [
-      "Live demo URL",
-      "Repository URL, if public",
-      "Kidist’s specific role and contribution",
-      "Verified technology stack",
-    ],
+    pending: ["Live demo URL"],
   },
   {
     slug: "tefabign",
