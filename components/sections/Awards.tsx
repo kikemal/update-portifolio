@@ -21,10 +21,6 @@ export function Awards() {
               <p className="kicker">Team achievement</p>
               <h2 id="awards-title">First place</h2>
             </div>
-            <p className="section-note">
-              AYNE and the hackathon award belong together — a shared night of
-              building, not a solo trophy.
-            </p>
           </div>
         </Reveal>
 

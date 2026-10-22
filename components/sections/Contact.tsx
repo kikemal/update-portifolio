@@ -164,9 +164,6 @@ export function Contact() {
             <button className="contact-send" type="submit" disabled={status === "loading"}>
               {status === "loading" ? "Opening WhatsApp" : "Send via WhatsApp"}
             </button>
-            <p className="contact-hint">
-              WhatsApp will open with your message so you can review and send it yourself.
-            </p>
             <p
               className={`form-status ${status === "opened" ? "ok" : status === "error" ? "bad" : ""}`}
               role="status"

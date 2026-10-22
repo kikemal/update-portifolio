@@ -52,10 +52,6 @@ export function Work() {
               <p className="kicker">Selected work</p>
               <h2 id="work-title">Work</h2>
             </div>
-            <p className="section-note">
-              Hover or focus a title to change the preview. Every project opens
-              into a longer note — nothing essential is hover-only.
-            </p>
           </div>
         </Reveal>
         <div className="work-layout">

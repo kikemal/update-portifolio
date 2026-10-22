@@ -1,4 +1,3 @@
-import { site } from "@/lib/content";
 import { LOGO_ACCENT, LOGO_PATHS, LOGO_VIEWBOX } from "@/lib/logo";
 import { cx } from "@/lib/utils";
 
@@ -16,7 +15,6 @@ const sizes = {
 
 export function Logo({ variant = "mark", tone = "brand", className }: LogoProps) {
   const size = sizes[variant];
-  const showWord = variant === "nav" || variant === "lockup";
 
   return (
     <span className={cx("logo", `logo-${variant}`, tone === "mono" && "logo-mono", className)}>
@@ -37,18 +35,6 @@ export function Logo({ variant = "mark", tone = "brand", className }: LogoProps)
         </g>
         <path className="logo-accent" d={LOGO_ACCENT} />
       </svg>
-      {showWord ? (
-        <span className="logo-wordmark">
-          {variant === "lockup" ? (
-            site.name
-          ) : (
-            <>
-              <span className="logo-given">{site.shortName}</span>
-              <span className="logo-family"> Kemal</span>
-            </>
-          )}
-        </span>
-      ) : null}
     </span>
   );
 }
