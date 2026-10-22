@@ -257,6 +257,14 @@ export const featuredAward = {
 
 export const certificates: Certificate[] = [
   {
+    id: "cursor-hackathon",
+    title: "1st place",
+    issuer: "Cursor AI Hackathon Ethiopia",
+    date: "July 25–26, 2026",
+    image: "/images/certificates/cursor-hackathon-first-place.jpg",
+    verifyUrl: null,
+  },
+  {
     id: "cursor-dev",
     title: "Development",
     issuer: "Ethiopian Cursor Community",
