@@ -92,16 +92,25 @@ export const projects: Project[] = [
       "Finding scholarships, internships, fellowships, and jobs is not the hard part. Knowing whether you fit, what you are missing, and what to prepare before you apply is.",
     audience: "Students and young professionals weighing real opportunities.",
     role:
-      "Built with Mulualem Mekonin during the STARK Hackathon 2026. Specific contribution notes are still being added.",
+      "Built with Mulualem Mekonin for the STARK Hackathon 2026. The public README lists me for product, frontend, UX, voice experience, and the demo; Mulualem for backend, database, the decision engine, and infrastructure. On GitHub I am the larger listed contributor.",
     process:
-      "The idea behind HULUM is simple: people need to understand eligibility, missing requirements, and next steps — not just a list of openings.",
+      "The idea behind HULUM is simple: people need to understand eligibility, missing requirements, and next steps — not just a list of openings. I worked across the Next.js product surface, onboarding, voice, and the public demo while the backend decision engine stayed deterministic TypeScript rather than an LLM guess.",
     decisions:
-      "The live product leads with a quiet editorial voice — “Know what is worth your time” — and a decision model around fit, readiness, and whether to apply, wait, or skip.",
-    stack: undefined,
+      "The live product leads with a quiet editorial voice — “Know what is worth your time” — and a decision model around fit, readiness, and whether to apply, wait, or skip. Groq may explain a stored verdict; it never makes one.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Express",
+      "PostgreSQL",
+      "Groq",
+      "Voxide",
+    ],
     results:
-      "A working public demo is live. Broader outcomes and a verified technology list still need to be added.",
+      "A working public demo is live. The repo is a TypeScript monorepo with a Next.js web app, an Express API, and PostgreSQL — built as Team Ethiopian Builders for STARK Hackathon 2026.",
     demoUrl: "https://hulum-alpha.vercel.app/",
-    repoUrl: null,
+    repoUrl: "https://github.com/mumekonin/hulum",
     media: [
       {
         type: "image",
@@ -120,11 +129,7 @@ export const projects: Project[] = [
         caption: "Recorded walkthrough of the live HULUM demo.",
       },
     ],
-    pending: [
-      "Verified technology stack",
-      "Kidist’s specific role and contribution",
-      "Repository URL, if public",
-    ],
+    pending: [],
   },
   {
     slug: "ayne",
@@ -132,18 +137,26 @@ export const projects: Project[] = [
     kicker: "Voice-first accessibility",
     year: "2026",
     summary:
-      "A team-built, voice-first AI assistant created to help visually impaired people navigate and understand the world around them.",
+      "Ayne means “my eye” in Amharic. It is a voice-first AI companion for blind and low-vision people in Ethiopia: you speak a question in Amharic, hold an object up, and Ayne photographs it, reads it, and answers out loud.",
     problem:
-      "Independence in daily life often depends on being able to understand a physical environment in real time — without waiting for someone else to describe it.",
-    audience: "Blind and visually impaired people who need practical, voice-first support.",
+      "Someone who cannot read a box of pills currently has to find a person they trust and ask. Independence should not wait on whoever happens to be in the room — and a wrong guess is worse than saying “I am not sure.”",
+    audience: "Blind and low-vision people in Ethiopia who need practical, Amharic, voice-first support.",
     role:
-      "Team project. Teammates publicly named: Kidist Kemal, Mulualem Mekonin, Melkamu Teshome, Obsan Habtamu, and Samuel Feyisa. Individual contribution notes are still being added.",
+      "Team project for the Cursor AI Hackathon Ethiopia. I worked on the mobile app and the backend. Obsan led AI/ML and presenting; Melkamu also worked on mobile; Mulualem on backend and AI/ML; Samuel on design and visual direction.",
     process:
-      "The MVP was built under hackathon pressure, with a night to turn an idea into a working product before presenting to judges at the Cursor AI Hackathon Ethiopia.",
+      "The MVP does one thing on purpose: medicine identification, Android first. The spoken conversation is the product — not a visual app with a screen reader added later. The screen exists for a sighted helper and for partial sight, and it never carries information the voice does not.",
     decisions:
-      "The team focused the MVP on voice commands for navigating a physical environment and understanding key objects in real time — a narrow, useful slice instead of a broad assistant.",
+      "Amharic is the only language the product speaks; there is no English fallback, including in failure messages. There is no viewfinder or shutter: capture is silent. Before the first photograph in a session, Ayne says the photo is sent to be read and is not stored on the phone. Camera turns take about 25 seconds of server work, so Ayne speaks progress lines during the wait — because silence and a crash are indistinguishable to someone who cannot see a spinner.",
+    stack: [
+      "Expo",
+      "React Native",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "Addis AI",
+    ],
     results:
-      "First place at the Cursor AI Hackathon Ethiopia, hosted at the Adwa Museum in Addis Ababa. This is a team award, not an individual one.",
+      "First place at the Cursor AI Hackathon Ethiopia, hosted at the Adwa Museum in Addis Ababa. This is a team award, not an individual one. The repository is private, so it is not linked here.",
     demoUrl: null,
     repoUrl: null,
     media: [
@@ -163,11 +176,7 @@ export const projects: Project[] = [
         alt: "Voice assistant listening screen with a large microphone control.",
       },
     ],
-    pending: [
-      "Demo or repository URL",
-      "Verified technology stack",
-      "Kidist’s specific role on the team",
-    ],
+    pending: ["Public demo URL"],
   },
   {
     slug: "queueless",
@@ -214,17 +223,32 @@ export const projects: Project[] = [
     slug: "tefabign",
     name: "Tefabign",
     kicker: "Campus lost & found",
+    year: "2026",
     summary:
       "A campus lost-and-found product for reporting missing belongings, posting found items, and helping people get things back — safely.",
     problem:
       "When something goes missing on campus, people need a single place to report it, search what has been found, and keep private details protected.",
     audience: "People on campus who have lost or found an item.",
-    role: undefined,
-    process: undefined,
+    role:
+      "Sole listed contributor on the public GitHub repo. I built the Node, Express, and Prisma backend through a frozen v1 — auth, lost and found reports, matching, claims, staff verification, notifications, and audit — then the Vite welcome page with English and Amharic.",
+    process:
+      "Work went in named tasks on GitHub: API contract, security hardening, case workflow, handover, and a welcome UI for frontend integration. Matching only produces suggestions; it never auto-approves ownership.",
+    decisions:
+      "Private ownership evidence stays off public responses. Staff verify claims; the system does not guess. The public homepage is live while some found-item cards are still preview layout data waiting on live search.",
+    stack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "React Router",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Prisma",
+    ],
     results:
-      "The product includes a public lost-and-found homepage and a report flow for lost or found items. A live public URL still needs to be added here.",
-    demoUrl: null,
-    repoUrl: null,
+      "Backend v1 is frozen for frontend integration. The public welcome page is live, with a report flow for lost or found items.",
+    demoUrl: "https://tefabegn.vercel.app",
+    repoUrl: "https://github.com/kikemal/tefabegn",
     media: [
       {
         type: "image",
@@ -237,12 +261,7 @@ export const projects: Project[] = [
         alt: "Tefabign report form for submitting a lost or found item.",
       },
     ],
-    pending: [
-      "Live demo URL",
-      "Repository URL, if public",
-      "Kidist’s specific role and contribution",
-      "Verified technology stack",
-    ],
+    pending: [],
   },
 ];
 
